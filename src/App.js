@@ -44,7 +44,7 @@ function App() {
       />
       <Container>
         <Search setSearchInput={setSearchInput} handleSearchSubmit={handleSearchSubmit}/>
-        <Results results={results}/>
+        <Results results={results} isAuthenticated={isAuthenticated}/>
       </Container>
     </>
   );
