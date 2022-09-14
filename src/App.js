@@ -25,14 +25,16 @@ function App() {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     
-    // TODO: wrap fetch into a try/catch statement
-
-    const response = await fetch(`${server}/movie?searchQuery=${searchInput}`, {
-      method: 'get'
-    })
-
-    const banana = await response.json();
-    setResults(banana);
+    try{
+      const response = await fetch(`${server}/movie?searchQuery=${searchInput}`, {
+        method: 'get'
+      })
+  
+      const banana = await response.json();
+      setResults(banana);
+    } catch (err) {
+      console.log(`Error: ${err}`)
+    }
   }
 
   return (
