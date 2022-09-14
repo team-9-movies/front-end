@@ -6,13 +6,34 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
+
 const Movies = (props) => {
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_SERVER}/mylists`).then((response) => {
-      console.log("connected", response.data);
-      props.setMovies(response.data);
-    });
-  }, []);
+
+    
+    useEffect(() => {
+        if(props.isAuthenticated){     
+        axios.get(`${process.env.REACT_APP_SERVER}/mylists/favorites?email=${props.user.email}`)
+        .then((response) => {
+        console.log("connected", response.data);
+        props.setMovies(response.data);
+        })
+    }
+    }, [props.isAuthenticated]);
+
+
+
+
+
+// const newReview =
+//   (
+//     <div>
+//         <Link to="/review/new">
+//             <Button variant="primary" size="sm">
+//             Add Review
+//             </Button>
+//         </Link>
+//     </div>
+//   )
 
   return (
     <>
@@ -23,9 +44,10 @@ const Movies = (props) => {
        : 
         <h3 className="mt-4"> My Favorite movies </h3>
       }
+      
       {/* modal */}
       <Row xs={1} md={3} className="g-4">
-      <p>check {props.movies.length}</p>
+    
         {props.movies.map((movie, idx) => (
           <Col>
             <Card key={idx} className="mt-3 mb-3">
@@ -61,9 +83,10 @@ const Movies = (props) => {
                   <Button variant="primary" size="sm" className="me-1">
                     Details
                   </Button>
-                    <Button variant="primary" size="sm">
+                  <Button variant="primary" size="sm">
                     Add Review
-                    </Button>
+                  </Button>
+                    
                   </>
                 }
               </Card.Body>

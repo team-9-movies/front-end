@@ -24,6 +24,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [movies, setMovies] = useState([]);
   const [isReviewed, setIsReviewed] = useState(false);
+  const [isUser, setIsUSer] = useState(false);
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +53,7 @@ function App() {
         <Results results={results} isAuthenticated={isAuthenticated}/>
       </Container>
       <Container>
-        <Favorites setMovies={setMovies} movies={movies} isAuthenticated={isAuthenticated}/>
+        <Favorites setMovies={setMovies} movies={movies} isAuthenticated={isAuthenticated} user={user} isUser={isUser}/>
       </Container>
     </>
   );
