@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Results from "./components/Results";
+import Favorites from "./components/Favorites";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from "react";
 
@@ -21,6 +22,7 @@ function App() {
 
   const [searchInput, setSearchInput] = useState('');
   const [results, setResults] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +49,9 @@ function App() {
       <Container>
         <Search setSearchInput={setSearchInput} handleSearchSubmit={handleSearchSubmit}/>
         <Results results={results} isAuthenticated={isAuthenticated}/>
+      </Container>
+      <Container>
+        <Favorites setMovies={setMovies} movies={movies} isAuthenticated={isAuthenticated}/>
       </Container>
     </>
   );
