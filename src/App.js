@@ -23,6 +23,7 @@ function App() {
   const [searchInput, setSearchInput] = useState('');
   const [results, setResults] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [isReviewed, setIsReviewed] = useState(false);
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
