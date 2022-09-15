@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import FavoritesDetailsModal from "./FavoritesDetailsModal";
 import DetailsButton from "./DetailsButton";
 import MovieDeleteButton from "./MovieDeleteButton";
+import { Container } from "react-bootstrap";
 
 const Movies = (props) => {
 
@@ -58,7 +59,7 @@ const Movies = (props) => {
 
 
   return (
-    <>
+    <Container>
       {movies.length === 0 ?
         <>
           <h3 className="mt-4"> You don't have favorites yet! </h3>
@@ -113,7 +114,7 @@ const Movies = (props) => {
         )
         )}
       </Row>
-    </>
+    </Container>
   );
 };
 
