@@ -29,18 +29,28 @@ const FavoritesDetailsModal = (props) => {
                     <p className="g-1" ><span className="fw-bold">Release Date:</span> {props.selectedItem.release_date}</p>
                     <p className="g-1" ><span className="fw-bold">Rating:</span> {props.selectedItem.vote_average}/10</p>
                     {props.selectedItem.overview}
-                    {props.reviews.map((review, idx) =>
-                        <Accordion defaultActiveKey="idx">
-                            <Accordion.Item eventKey="0">
-                                <Accordion.Header>User Review</Accordion.Header>
-                                <Accordion.Body>
-                                    <p>{review.text}</p>
-                                    <span>Posted by: </span>
-                                    <span>{review.email}</span>
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        </Accordion>
-                    )}
+
+                    // To Display the Reviews
+                    {/* {props.selectedItem.reviews.length == 0 ?
+                        <>
+                            <h3>No reviews avaialble for this title.</h3>
+                            <p>Be the first!</p>
+                        </>
+                        :
+                            props.selectedItem.reviews.map((review, idx) =>
+                                <Accordion defaultActiveKey="0" key={idx}>
+                                    <Accordion.Item eventKey="0">
+                                        <Accordion.Header>User Review</Accordion.Header>
+                                        <Accordion.Body>
+                                            <p>{review.text}</p>
+                                            <span>Posted by: </span>
+                                            <span>{review.email}</span>
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                </Accordion>
+                            )
+                    } */}
+                    
                 </Modal.Body>
 
                 <Modal.Footer>

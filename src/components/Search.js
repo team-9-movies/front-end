@@ -10,7 +10,7 @@ const Search = (props) => {
           aria-label="Search"
           onChange={(e) => { props.setSearchInput(e.target.value) }}
         />
-        <Button variant="outline-success" id="button-addon2" type='submit'>
+        <Button variant="primary" id="button-addon2" type='submit'>
           Search Movie Database
         </Button>
       </InputGroup>
