@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand><img alt="" src="/popcorn.png" width="30" height="30" className="d-inline-block align top"/>{' '}The Movie Critic</Navbar.Brand>
+        <Navbar.Brand><img alt="" src="/popcorn.png" width="30" height="30" className="d-inline-block align top"/>{' '}The Popcorn Critic</Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           {isAuthenticated
             ?
