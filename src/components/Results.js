@@ -18,10 +18,11 @@ const Results = (props) => {
     setSelectedItem(item)
     setShowModal(true)
     try{      
-      const response = await fetch(`${server}/reviews/${item.id}`, {
+      const response = await fetch(`${server}/reviews?apiid=${item.id}`, {
         method: 'get'
       })  
       const res = await response.json();
+      console.log(res);
       setReviews(res);
     } catch (err) {
       console.log(`Error: ${err}`)
