@@ -69,7 +69,7 @@ const Movies = (props) => {
       }
 
       {/* modal */}
-      <FavoritesDetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={isAuthenticated} user={user} movies={movies} reviews={reviews}/>
+      <FavoritesDetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={isAuthenticated} user={user} movies={movies} reviews={reviews} setReviews={setReviews}/>
 
       <Row xs={1} md={3} className="g-4">
 

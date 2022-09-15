@@ -45,6 +45,8 @@ const FavoritesDetailsModal = (props) => {
                                             <p>{review.text}</p>
                                             <span>Posted by: </span>
                                             <span>{review.email}</span>
+                                            <br></br>
+                                            <EditReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
@@ -61,7 +63,7 @@ const FavoritesDetailsModal = (props) => {
                         ?
                         <>
                             <ReviewButton selectedItem={props.selectedItem} user={props.user} />
-                            <EditReviewButton selectedItem={props.selectedItem} user={props.user} />
+                           
                         </>
                         :
                         <Button variant="secondary">Login to Save</Button>
