@@ -47,13 +47,14 @@ const Movies = (props) => {
         {movies.map((movie, idx) => (
           <Col key={idx}>
             <Card className="mt-3 mb-3">
-              {movie.imgSrc ?
+              {movie.backdrop_path
+                ?
                 <>
                   <Card.Img
                     as="img"
                     variant="top"
                     className="img-thumbnail"
-                    src={movie.imgSrc}
+                    src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
                   />
                 </>
                 :
@@ -65,9 +66,8 @@ const Movies = (props) => {
                 />
               }
               <Card.Body>
-                <Card.Title>{movie.title} </Card.Title>
-                {/* <Card.Text>{movie.overview}</Card.Text>*/}
-
+                <Card.Title>{movie.original_title} </Card.Title>
+                <Card.Text style={{ maxHeight: '100px', overflow: 'hidden' }}>{movie.overview}</Card.Text>
                 {props.isReviewed ?
                   <>
                     <Button variant="primary" size="sm" className="me-1">

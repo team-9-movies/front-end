@@ -7,7 +7,7 @@ const DetailsButton = (props) => {
         <Button
             variant="primary" className="me-1"
             onClick={() => {
-                props.modalOn(props.item)
+                props.modalOn(props.item, props.match)
             }}>
             Details
         </Button>

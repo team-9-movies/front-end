@@ -37,7 +37,7 @@ const DetailsModal = (props) => {
                     {props.isAuth
                         ?
                         <>
-                        <SaveButton />
+                        <SaveButton movie={props.selectedItem} match={props.selectedItem.isMatching}/>
                         <ReviewButton selectedItem={props.selectedItem} user={props.user}/>
                         
                         </>
