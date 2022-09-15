@@ -14,7 +14,6 @@ let newReview = {userEmail, nickName, text}
             axios.put(`${process.env.REACT_APP_SERVER}/reviews?apiid=${props.selectedItem.id}`, newReview )
             .then((response) => {
             console.log("connected", response.data);
-            props.setMovies(response.data);
             })
         
     }}>Add Review</Button>
