@@ -5,7 +5,9 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useAuth0 } from '@auth0/auth0-react';
-
+import FavoritesDetailsModal from "./FavoritesDetailsModal";
+import DetailsButton from "./DetailsButton";
+import MovieDeleteButton from "./MovieDeleteButton";
 
 const Movies = (props) => {
 
@@ -18,7 +20,11 @@ const Movies = (props) => {
     // logout,
   } = useAuth0();
 
+  const server = process.env.REACT_APP_SERVER;
   const [movies, setMovies] = useState([]);
+  const [showModal, setShowModal] = useState(false)
+  const [selectedItem, setSelectedItem] = useState({})
+  const [reviews, setReviews] = useState({})
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -29,6 +35,25 @@ const Movies = (props) => {
         })
     }
   }, [isAuthenticated, setMovies, user.email]);
+
+  const modalOn = async (item) => {
+    setSelectedItem(item)
+    console.log(item)
+    setShowModal(true)
+    try{      
+      const response = await fetch(`${server}/reviews?apiid=${item.apiId}`, {
+        method: 'get'
+      })  
+      const res = await response.json();
+      console.log(res);
+      setReviews(res);
+    } catch (err) {
+      console.log(`Error: ${err}`)
+    }
+  }
+
+  const modalOff = () => setShowModal(false)
+
 
 
   return (
@@ -42,6 +67,8 @@ const Movies = (props) => {
       }
 
       {/* modal */}
+      <FavoritesDetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={isAuthenticated} user={user} movies={movies} reviews={reviews}/>
+
       <Row xs={1} md={3} className="g-4">
 
         {movies.map((movie, idx) => (
@@ -70,18 +97,15 @@ const Movies = (props) => {
                 <Card.Text style={{ maxHeight: '100px', overflow: 'hidden' }}>{movie.overview}</Card.Text>
                 {props.isReviewed ?
                   <>
-                    <Button variant="primary" size="sm" className="me-1">
-                      Details
-                    </Button>
+                    <DetailsButton />
                   </>
                   :
                   <>
-                    <Button variant="primary" size="sm" className="me-1">
-                      Details
-                    </Button>
-                    <Button variant="primary" size="sm">
+                    <DetailsButton modalOn={modalOn} item={movie} />
+                    <Button variant="primary">
                       Add Review
                     </Button>
+                    <MovieDeleteButton />
 
                   </>
                 }
