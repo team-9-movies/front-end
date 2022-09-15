@@ -32,8 +32,7 @@ const FavoritesDetailsModal = (props) => {
 
                     {props.selectedItem.reviews && props.selectedItem.reviews.length == 0 ?
                         <>
-                            <h3>No reviews available for this title.</h3>
-                            <p>Be the first!</p>
+                            <p style={{ color: 'blue' }}>No reviews available for this title. Save the movie to be the first!</p>
                         </>
                         :
                         props.selectedItem.reviews && props.selectedItem.reviews.map((review, idx) =>

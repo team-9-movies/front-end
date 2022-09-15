@@ -17,6 +17,7 @@ const Results = (props) => {
   const modalOn = async (item, match) => {
     item["isMatching"] = match; 
     setSelectedItem(item)
+    console.log(selectedItem)
     setShowModal(true)
     try {
       const response = await fetch(`${server}/reviews?apiid=${item.id}`, {
@@ -42,7 +43,7 @@ const Results = (props) => {
         <h3 className="mt-4"> Search Results</h3>
       }
 
-      <DetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={props.isAuthenticated} user={props.user} />
+      <DetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={props.isAuthenticated} user={props.user} reviews={reviews}/>
 
       <Row xs={1} md={3} className="g-4">
         {props.results.map((item, idx) => {
