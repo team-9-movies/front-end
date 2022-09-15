@@ -30,14 +30,13 @@ const FavoritesDetailsModal = (props) => {
                     <p className="g-1" ><span className="fw-bold">Rating:</span> {props.selectedItem.vote_average}/10</p>
                     {props.selectedItem.overview}
 
-                    // To Display the Reviews
-                    {/* {props.selectedItem.reviews.length == 0 ?
+                    {props.selectedItem.reviews && props.selectedItem.reviews.length == 0 ?
                         <>
-                            <h3>No reviews avaialble for this title.</h3>
+                            <h3>No reviews available for this title.</h3>
                             <p>Be the first!</p>
                         </>
                         :
-                            props.selectedItem.reviews.map((review, idx) =>
+                        props.selectedItem.reviews && props.selectedItem.reviews.map((review, idx) =>
                                 <Accordion defaultActiveKey="0" key={idx}>
                                     <Accordion.Item eventKey="0">
                                         <Accordion.Header>User Review</Accordion.Header>
@@ -49,7 +48,7 @@ const FavoritesDetailsModal = (props) => {
                                     </Accordion.Item>
                                 </Accordion>
                             )
-                    } */}
+                    }
                     
                 </Modal.Body>
 
