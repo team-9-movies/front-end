@@ -1,4 +1,5 @@
 import SaveButton from "./SaveButton"
+import ReviewButton from "./ReviewButton"
 import { Modal } from "react-bootstrap"
 import { useState } from "react"
 import Button from "react-bootstrap/Button"
@@ -7,7 +8,6 @@ import Image from 'react-bootstrap/Image'
 const DetailsModal = (props) => {
     
     
-
     return (
         <>
             {/* grab the information from the results.js for that particular movie and display the information */}
@@ -38,6 +38,7 @@ const DetailsModal = (props) => {
                         ?
                         <>
                         <SaveButton />
+                        <ReviewButton selectedItem={props.selectedItem} user={props.user}/>
                         
                         </>
                         :

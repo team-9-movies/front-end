@@ -9,16 +9,17 @@ import DetailsButton from "./DetailsButton";
 
 const Results = (props) => {
 
+  const server = process.env.REACT_APP_SERVER;
   const [showModal, setShowModal] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-
+  const [results, setResults] = useState({})
   const modalOn = async (item) => {
     setSelectedItem(item)
     setShowModal(true)
 
     try{
       
-      const response = await fetch(`${server}/movie?reviewQuery=${item.id}`, {
+      const response = await fetch(`${server}/reviews/${item.id}`, {
         method: 'get'
       })
   
@@ -45,7 +46,7 @@ const Results = (props) => {
         <h3 className="mt-4"> Search Results</h3>
       }
 
-      <DetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={props.isAuthenticated} />
+      <DetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={props.isAuthenticated} user={props.user} />
 
       <Row xs={1} md={3} className="g-4">
         {props.results.map((item, idx) =>
