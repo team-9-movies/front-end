@@ -12,26 +12,20 @@ const Results = (props) => {
   const server = process.env.REACT_APP_SERVER;
   const [showModal, setShowModal] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const [results, setResults] = useState({})
+  const [reviews, setReviews] = useState({})
+
   const modalOn = async (item) => {
     setSelectedItem(item)
     setShowModal(true)
-
-    try{
-      
+    try{      
       const response = await fetch(`${server}/reviews/${item.id}`, {
         method: 'get'
-      })
-  
-      const reviews = await response.json();
-      setResults(reviews);
-
+      })  
+      const res = await response.json();
+      setReviews(res);
     } catch (err) {
-
       console.log(`Error: ${err}`)
-
     }
-
   }
   const modalOff = () => setShowModal(false)
 
