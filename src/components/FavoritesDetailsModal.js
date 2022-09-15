@@ -1,9 +1,10 @@
-
 import ReviewButton from "./ReviewButton"
+import EditReviewButton from "./EditReviewButton"
 import { Modal } from "react-bootstrap"
 import Button from "react-bootstrap/Button"
 import Image from 'react-bootstrap/Image'
 import Accordion from 'react-bootstrap/Accordion';
+
 
 const FavoritesDetailsModal = (props) => {
 
@@ -44,6 +45,8 @@ const FavoritesDetailsModal = (props) => {
                                             <p>{review.text}</p>
                                             <span>Posted by: </span>
                                             <span>{review.email}</span>
+                                            <br></br>
+                                            <EditReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
@@ -60,6 +63,7 @@ const FavoritesDetailsModal = (props) => {
                         ?
                         <>
                             <ReviewButton selectedItem={props.selectedItem} user={props.user} />
+                           
                         </>
                         :
                         <Button variant="secondary">Login to Save</Button>

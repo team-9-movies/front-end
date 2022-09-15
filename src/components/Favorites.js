@@ -28,6 +28,7 @@ const Movies = (props) => {
   const [reviews, setReviews] = useState({})
 
   useEffect(() => {
+    console.log(user)
     if (isAuthenticated) {
       axios.get(`${process.env.REACT_APP_SERVER}/mylists/favorites?email=${user.email}`)
         .then((response) => {
@@ -68,7 +69,7 @@ const Movies = (props) => {
       }
 
       {/* modal */}
-      <FavoritesDetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={isAuthenticated} user={user} movies={movies} reviews={reviews}/>
+      <FavoritesDetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={isAuthenticated} user={user} movies={movies} reviews={reviews} setReviews={setReviews}/>
 
       <Row xs={1} md={3} className="g-4">
 
@@ -103,9 +104,6 @@ const Movies = (props) => {
                   :
                   <>
                     <DetailsButton modalOn={modalOn} item={movie} />
-                    <Button variant="primary">
-                      Add Review
-                    </Button>
                     <MovieDeleteButton />
 
                   </>
