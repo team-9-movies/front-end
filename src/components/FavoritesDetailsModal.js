@@ -1,5 +1,6 @@
 import ReviewButton from "./ReviewButton"
 import EditReviewButton from "./EditReviewButton"
+import DeleteReviewButton from "./DeleteReviewButton"
 import { Modal } from "react-bootstrap"
 import Button from "react-bootstrap/Button"
 import Image from 'react-bootstrap/Image'
@@ -47,6 +48,7 @@ const FavoritesDetailsModal = (props) => {
                                             <span>{review.email}</span>
                                             <br></br>
                                             <EditReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
+                                            <DeleteReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
