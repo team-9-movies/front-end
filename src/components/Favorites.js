@@ -21,20 +21,6 @@ const Movies = (props) => {
     }, [props.isAuthenticated]);
 
 
-
-
-
-// const newReview =
-//   (
-//     <div>
-//         <Link to="/review/new">
-//             <Button variant="primary" size="sm">
-//             Add Review
-//             </Button>
-//         </Link>
-//     </div>
-//   )
-
   return (
     <>
       {props.movies.length === 0 ? 

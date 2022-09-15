@@ -50,10 +50,10 @@ function App() {
       />
       <Container>
         <Search setSearchInput={setSearchInput} handleSearchSubmit={handleSearchSubmit}/>
-        <Results results={results} isAuthenticated={isAuthenticated}/>
+        <Results results={results} isAuthenticated={isAuthenticated} user={user}/>
       </Container>
       <Container>
-        <Favorites setMovies={setMovies} movies={movies} isAuthenticated={isAuthenticated} user={user} isUser={isUser}/>
+        <Favorites setMovies={setMovies} movies={movies} isAuthenticated={isAuthenticated} user={user} results={results}/>
       </Container>
     </>
   );
