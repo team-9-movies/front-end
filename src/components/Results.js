@@ -12,6 +12,8 @@ const Results = (props) => {
   const [showModal, setShowModal] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
 
+  const server = process.env.REACT_APP_SERVER
+
   const modalOn = async (item) => {
     setSelectedItem(item)
     setShowModal(true)
@@ -23,7 +25,7 @@ const Results = (props) => {
       })
   
       const reviews = await response.json();
-      setResults(reviews);
+      props.setResults(reviews);
 
     } catch (err) {
 
