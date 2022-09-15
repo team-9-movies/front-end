@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"
 import Image from 'react-bootstrap/Image'
 
 const DetailsModal = (props) => {
-
+    
     
 
     return (
@@ -38,6 +38,7 @@ const DetailsModal = (props) => {
                         ?
                         <>
                         <SaveButton />
+                        
                         </>
                         :
                         <Button variant="secondary">Login to Save</Button>

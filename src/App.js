@@ -53,7 +53,7 @@ function App() {
         <Results results={results} isAuthenticated={isAuthenticated}/>
       </Container>
       <Container>
-        <Favorites setMovies={setMovies} movies={movies} isAuthenticated={isAuthenticated} user={user} isUser={isUser}/>
+        <Favorites setMovies={setMovies} movies={movies} isAuthenticated={isAuthenticated} user={user} results={results}/>
       </Container>
     </>
   );
