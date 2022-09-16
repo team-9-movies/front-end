@@ -29,25 +29,6 @@ const DetailsModal = (props) => {
                     <p className="g-1" ><span className="fw-bold">Rating:</span> {props.selectedItem.vote_average}/10</p>
                     <p className="g-1"><span className="fw-bold">Overview: </span><span>{props.selectedItem.overview}</span></p>
                     
-                    <h4 className="m">Reviews:</h4>
-                    {props.reviews && props.reviews.length == 0 ?
-                        <>
-                            <p style={{ color: 'blue' }}>No reviews available for this title. Save the movie to be the first!</p>
-                        </>
-                        :
-                        props.reviews && props.reviews.map((review, idx) =>
-                                <Accordion defaultActiveKey="0" key={idx}>
-                                    <Accordion.Item eventKey="0">
-                                        <Accordion.Header>User Review</Accordion.Header>
-                                        <Accordion.Body>
-                                            <p>{review.text}</p>
-                                            <span>Posted by: </span>
-                                            <span>{review.email}</span>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
-                            )
-                    }
                 </Modal.Body>
                 
                 <Modal.Footer>
