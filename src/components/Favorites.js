@@ -7,7 +7,6 @@ import Row from "react-bootstrap/Row";
 import { useAuth0 } from '@auth0/auth0-react';
 import FavoritesDetailsModal from "./FavoritesDetailsModal";
 import DetailsButton from "./DetailsButton";
-import MovieDeleteButton from "./MovieDeleteButton";
 import { Container } from "react-bootstrap";
 
 const Movies = (props) => {
@@ -25,7 +24,6 @@ const Movies = (props) => {
   const [movies, setMovies] = useState([]);
   const [showModal, setShowModal] = useState(false)
   const [selectedItem, setSelectedItem] = useState(null)
-  // const [reviews, setReviews] = useState({})
 
   useEffect(() => {
     console.log(user)
@@ -42,23 +40,23 @@ const Movies = (props) => {
     setSelectedItem(item)
     console.log(item)
     setShowModal(true)
-    // try{      
-    //   const response = await fetch(`${server}/reviews?apiid=${item.apiId}`, {
-    //     method: 'get'
-    //   })  
-    //   const res = await response.json();
-    //   console.log(res);
-    //   setReviews(res);
-    // } catch (err) {
-    //   console.log(`Error: ${err}`)
-    // }
-
-
   }
 
   const modalOff = () => setShowModal(false)
 
+  const handleDeleteFavorite = async (movie) => {
+    
+    try {
+      const response = await axios.put(`${process.env.REACT_APP_SERVER}/mylists/delete?email=${user.email}`, {id : movie._id})
+      console.log('successfully deleted movie:', response.data)
+      const newMovies = movies.filter(myMovie => myMovie._id !== movie._id);
+      console.log('new movies', newMovies);
+      setMovies(newMovies);
+    } catch (err){
+      console.log('Error deleting favorite movie')
+    }
 
+  }
 
   return (
     <Container>
@@ -106,8 +104,7 @@ const Movies = (props) => {
                   :
                   <>
                     <DetailsButton modalOn={modalOn} item={movie} />
-                    <MovieDeleteButton />
-
+                    <Button variant="danger" className="ms-1" onClick={()=>{handleDeleteFavorite(movie)}}>Delete</Button>
                   </>
                 }
               </Card.Body>

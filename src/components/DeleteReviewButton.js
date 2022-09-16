@@ -15,7 +15,7 @@ const DeleteReviewButton = (props) => {
     }
 
     return (
-        <Button variant="primary" onClick={() => {
+        <Button variant="danger" onClick={() => {
             handleDeleteReview(props.review._id)
         }}>Delete Review</Button>
 
