@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ReviewButton from "./ReviewButton"
 import EditReviewButton from "./EditReviewButton"
 import DeleteReviewButton from "./DeleteReviewButton"
@@ -7,8 +8,10 @@ import Image from 'react-bootstrap/Image'
 import Accordion from 'react-bootstrap/Accordion';
 
 
-const FavoritesDetailsModal = (props) => {
 
+const FavoritesDetailsModal = (props) => {
+    // const [review, setReview] = useState(props.selectedItem.reviews);
+    
 
     return (
         <>
@@ -32,13 +35,13 @@ const FavoritesDetailsModal = (props) => {
                     <p className="g-1" ><span className="fw-bold">Rating:</span> {props.selectedItem.vote_average}/10</p>
                     {props.selectedItem.overview}
 
-                    {props.selectedItem.reviews && props.selectedItem.reviews.length == 0 ?
+                    {props.reviews && props.reviews.length === 0 ?
                         <>
                             <h3>No reviews available for this title.</h3>
                             <p>Be the first!</p>
                         </>
                         :
-                        props.selectedItem.reviews && props.selectedItem.reviews.map((review, idx) =>
+                            props.selectedItem.reviews && props.selectedItem.reviews.map((review, idx) =>
                                 <Accordion defaultActiveKey="0" key={idx}>
                                     <Accordion.Item eventKey="0">
                                         <Accordion.Header>User Review</Accordion.Header>
@@ -49,7 +52,7 @@ const FavoritesDetailsModal = (props) => {
                                             <br></br>
                                         
                                             <EditReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
-                                            <DeleteReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
+                                            <DeleteReviewButton selectedItem={props.selectedItem} user={props.user} review={review} reviews={props.reviews} setReviews={props.setReviews} />
                                         
                                         </Accordion.Body>
                                     </Accordion.Item>
