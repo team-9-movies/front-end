@@ -75,6 +75,7 @@ const FavoritesDetailsModal = (props) => {
                                             <>
                                                 <EditReviewButton selectedItem={selectedMovie} user={props.user} review={review} reviews={currReviews} setReviews={setCurrReviews}/>
 
+
                                                 <DeleteReviewButton selectedItem={selectedMovie} user={props.user} review={review} reviews={currReviews} setReviews={setCurrReviews} />
                                             </>
                                             : <div></div>
