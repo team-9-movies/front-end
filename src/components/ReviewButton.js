@@ -1,8 +1,10 @@
 import { Button } from "react-bootstrap";
 
+import {useNavigate} from 'react-router-dom'
 import axios from "axios";
 
 const ReviewButton = (props) => {
+let navigate = useNavigate()
 let userEmail = props.user.email
 let nickName = props.user.nickName
 // add text below after setup the name 
