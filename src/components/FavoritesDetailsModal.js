@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReviewButton from "./ReviewButton"
 import EditReviewButton from "./EditReviewButton"
 import DeleteReviewButton from "./DeleteReviewButton"
@@ -14,6 +14,24 @@ const FavoritesDetailsModal = (props) => {
     // const [review, setReview] = useState(props.selectedItem.reviews);
     const [nickname, setNickname] = useState("")
     const [text, setText] = useState("")
+    const [currReviews, setCurrReviews] = useState([])
+    const [selectedMovie, setSelectedMovie] = useState(props.selectedItem)
+
+
+    useEffect(() => {
+        if (props.selectedItem) {
+            const newSelected = { ...props.selectedItem };
+            setSelectedMovie(newSelected)
+        }
+    }, [props.selectedItem])
+
+    useEffect(() => {
+        if (selectedMovie) {
+            const currentReviews = [...selectedMovie.reviews]
+            setCurrReviews(currentReviews)
+        }
+    }, [selectedMovie])
+
 
 
     return (
@@ -22,9 +40,9 @@ const FavoritesDetailsModal = (props) => {
 
             <Modal show={props.showModal}>
                 <Modal.Header>
-                    <Modal.Title >{props.selectedItem.title}</Modal.Title>
+                    <Modal.Title >{selectedMovie ? selectedMovie.title : ''}</Modal.Title>
                 </Modal.Header>
-                {props.selectedItem.backdrop_path != null
+                {selectedMovie && selectedMovie.backdrop_path != null
                     ?
                     <>
                         <Image variant="top" className="img-thumbnail" src={`https://image.tmdb.org/t/p/w500${props.selectedItem.backdrop_path}`} />
@@ -34,28 +52,32 @@ const FavoritesDetailsModal = (props) => {
                 }
                 <Modal.Body>
                     { }
-                    <p className="g-1" ><span className="fw-bold">Release Date:</span> {props.selectedItem.release_date}</p>
-                    <p className="g-1" ><span className="fw-bold">Rating:</span> {props.selectedItem.vote_average}/10</p>
-                    <p className="g-1"><span className="fw-bold">Overview: </span><span>{props.selectedItem.overview}</span></p>
+                    <p className="g-1" ><span className="fw-bold">Release Date:</span> {selectedMovie && selectedMovie.release_date}</p>
+                    <p className="g-1" ><span className="fw-bold">Rating:</span> {selectedMovie && selectedMovie.vote_average}/10</p>
+                    <p className="g-1"><span className="fw-bold">Overview: </span><span>{selectedMovie && selectedMovie.overview}</span></p>
 
-                    {props.reviews && props.reviews.length === 0 ?
+                    {currReviews.length === 0 ?
                         <>
                             <p style={{ color: 'blue' }}>No reviews available for this title. Save the movie to be the first!</p>
                         </>
                         :
-                        props.selectedItem.reviews && props.selectedItem.reviews.map((review, idx) =>
+                        currReviews.map((review, idx) =>
                             <Accordion defaultActiveKey="0" key={idx}>
                                 <Accordion.Item eventKey="1">
                                     <Accordion.Header>User Review</Accordion.Header>
                                     <Accordion.Body>
                                         <p>{review.text}</p>
-                                        <span>Posted by: </span>
-                                        <span>{review.email}</span>
+                                        <p><b>Posted by:</b> <span>{review.nickName}</span></p>
                                         <br></br>
+                                        {review.email === props.user.email
+                                            ?
+                                            <>
+                                                <EditReviewButton selectedItem={selectedMovie} user={props.user} review={review} />
 
-                                        <EditReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
-                                        <DeleteReviewButton selectedItem={props.selectedItem} user={props.user} review={review} reviews={props.reviews} setReviews={props.setReviews} />
-
+                                                <DeleteReviewButton selectedItem={selectedMovie} user={props.user} review={review} reviews={currReviews} setReviews={setCurrReviews} />
+                                            </>
+                                            : <div></div>
+                                        }
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
@@ -75,7 +97,7 @@ const FavoritesDetailsModal = (props) => {
                             <Form.Label>Review body:</Form.Label>
                             <Form.Control type="text" placeholder="Type your review here" as="textarea" rows={3} onChange={(e) => setText(e.target.value)} />
                         </Form.Group>
-                        <ReviewButton selectedItem={props.selectedItem} user={props.user} nickname={nickname} text={text}/>
+                        <ReviewButton selectedItem={selectedMovie} user={props.user} nickname={nickname} text={text} setReviews={setCurrReviews} />
                     </Form>
                 </Modal.Body>
 
