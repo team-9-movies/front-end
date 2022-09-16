@@ -24,8 +24,8 @@ const Movies = (props) => {
   const server = process.env.REACT_APP_SERVER;
   const [movies, setMovies] = useState([]);
   const [showModal, setShowModal] = useState(false)
-  const [selectedItem, setSelectedItem] = useState({})
-  const [reviews, setReviews] = useState({})
+  const [selectedItem, setSelectedItem] = useState(null)
+  // const [reviews, setReviews] = useState({})
 
   useEffect(() => {
     console.log(user)
@@ -36,22 +36,24 @@ const Movies = (props) => {
           setMovies(response.data);
         })
     }
-  }, [isAuthenticated, setMovies, user.email]);
+  }, [isAuthenticated, user]);
 
   const modalOn = async (item) => {
     setSelectedItem(item)
     console.log(item)
     setShowModal(true)
-    try{      
-      const response = await fetch(`${server}/reviews?apiid=${item.apiId}`, {
-        method: 'get'
-      })  
-      const res = await response.json();
-      console.log(res);
-      setReviews(res);
-    } catch (err) {
-      console.log(`Error: ${err}`)
-    }
+    // try{      
+    //   const response = await fetch(`${server}/reviews?apiid=${item.apiId}`, {
+    //     method: 'get'
+    //   })  
+    //   const res = await response.json();
+    //   console.log(res);
+    //   setReviews(res);
+    // } catch (err) {
+    //   console.log(`Error: ${err}`)
+    // }
+
+
   }
 
   const modalOff = () => setShowModal(false)
@@ -69,7 +71,7 @@ const Movies = (props) => {
       }
 
       {/* modal */}
-      <FavoritesDetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={isAuthenticated} user={user} movies={movies} reviews={reviews} setReviews={setReviews}/>
+      <FavoritesDetailsModal modalOff={modalOff} showModal={showModal} selectedItem={selectedItem} isAuth={isAuthenticated} user={user} movies={movies}/>
 
       <Row xs={1} md={3} className="g-4">
 

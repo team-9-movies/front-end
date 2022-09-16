@@ -4,24 +4,20 @@ import axios from "axios";
 
 const DeleteReviewButton = (props) => {
 
-    
-    let reviewId = props.review._id
-    let deletedReview = {reviewId}
-    console.log(reviewId)
-    return (
-        <Button variant="primary" onClick={() => {   
-            console.log("1111", props.reviews)
-            const updatedReviews = props.reviews.filter(review => review._id === reviewId) 
-            console.log("updated reviews", updatedReviews)
-            props.setReviews(updatedReviews)
-            axios.put(`${process.env.REACT_APP_SERVER}/reviews/delete?apiid=${props.selectedItem.apiId}`, deletedReview )
-            .then((response) => {
-                                
-                console.log("connected", response.data);
-            
-            })
+    const handleDeleteReview = (id) => {
+        const updatedReviews = props.reviews.filter(review => review._id !== id) 
         
-    }}>Delete Review</Button>
+        axios.put(`${process.env.REACT_APP_SERVER}/reviews/delete?apiid=${props.selectedItem.apiId}`, {reviewId: id} )
+        .then((response) => {
+            props.setReviews(updatedReviews)
+        })
+        .catch(err => console.log('OOOPS in deletion of review'))
+    }
+
+    return (
+        <Button variant="primary" onClick={() => {
+            handleDeleteReview(props.review._id)
+        }}>Delete Review</Button>
 
     )
 
