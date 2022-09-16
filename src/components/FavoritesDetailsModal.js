@@ -47,8 +47,10 @@ const FavoritesDetailsModal = (props) => {
                                             <span>Posted by: </span>
                                             <span>{review.email}</span>
                                             <br></br>
+                                        
                                             <EditReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
                                             <DeleteReviewButton selectedItem={props.selectedItem} user={props.user} review={review} />
+                                        
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
