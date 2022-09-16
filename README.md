@@ -4,3 +4,7 @@ Authors:
 - Alexx
 - Ayrat
 - Alice
+
+# Live link
+
+https://popcorn-critic.netlify.app/
