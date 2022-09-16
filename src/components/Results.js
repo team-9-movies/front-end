@@ -72,7 +72,7 @@ const Results = (props) => {
                       <SaveButton match={match.length > 0 ? true : false} movie={item} />
                     </>
                     :
-                    <Button variant="secondary" size="sm">Login to Save</Button>
+                    <Button variant="secondary">Login to Save</Button>
                   }
                 </Card.Body>
               </Card>

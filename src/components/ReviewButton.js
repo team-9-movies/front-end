@@ -5,8 +5,6 @@ const ReviewButton = (props) => {
 
   let userEmail = props.user.email
   let nickName = props.nickname
-  // add text below after setup the name 
-
   let text = props.text
   let newReview = { userEmail, nickName, text }
 
@@ -16,6 +14,8 @@ const ReviewButton = (props) => {
         .then((response) => {
           console.log("added review", response.data.reviews);
           props.setReviews(response.data.reviews);
+          props.setNickname('')
+          props.setText('')
         })
     }}>Add Review</Button>
   )

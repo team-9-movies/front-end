@@ -13,6 +13,7 @@ import { Form } from "react-bootstrap";
 const FavoritesDetailsModal = (props) => {
     // const [review, setReview] = useState(props.selectedItem.reviews);
     const [nickname, setNickname] = useState("")
+    // this is post review text
     const [text, setText] = useState("")
     const [currReviews, setCurrReviews] = useState([])
     const [selectedMovie, setSelectedMovie] = useState(props.selectedItem)
@@ -72,8 +73,9 @@ const FavoritesDetailsModal = (props) => {
                                         {review.email === props.user.email
                                             ?
                                             <>
-                                                <EditReviewButton selectedItem={selectedMovie} user={props.user} review={review} />
-                                                {' '}
+                                                <EditReviewButton selectedItem={selectedMovie} user={props.user} review={review} reviews={currReviews} setReviews={setCurrReviews}/>
+
+
                                                 <DeleteReviewButton selectedItem={selectedMovie} user={props.user} review={review} reviews={currReviews} setReviews={setCurrReviews} />
                                             </>
                                             : <div></div>
@@ -87,7 +89,7 @@ const FavoritesDetailsModal = (props) => {
                     <Form className="mt-5">
                         <Form.Group className="mb-3" controlId="formNickname">
                             <Form.Label>Enter nickname:</Form.Label>
-                            <Form.Control type="nickname" placeholder="Enter nickname" onChange={(e) => setNickname(e.target.value)} />
+                            <Form.Control type="nickname" placeholder="Enter nickname" onChange={(e) => setNickname(e.target.value)} value={nickname}/>
                             <Form.Text className="text-muted">
                                 Please provide your nickname for other users to see.
                             </Form.Text>
@@ -95,9 +97,9 @@ const FavoritesDetailsModal = (props) => {
 
                         <Form.Group className="mb-3" controlId="formReviewText">
                             <Form.Label>Review body:</Form.Label>
-                            <Form.Control type="text" placeholder="Type your review here" as="textarea" rows={3} onChange={(e) => setText(e.target.value)} />
+                            <Form.Control type="text" placeholder="Type your review here" as="textarea" rows={3} onChange={(e) => setText(e.target.value)} value={text} />
                         </Form.Group>
-                        <ReviewButton selectedItem={selectedMovie} user={props.user} nickname={nickname} text={text} setReviews={setCurrReviews} />
+                        <ReviewButton selectedItem={selectedMovie} user={props.user} nickname={nickname} text={text} setReviews={setCurrReviews} setNickname={setNickname} setText={setText} />
                     </Form>
                 </Modal.Body>
 
